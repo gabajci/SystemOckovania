@@ -29,7 +29,7 @@ namespace SystemOckovanie.Models
         {
             
         }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Person>().ToTable("Person");
@@ -39,7 +39,7 @@ namespace SystemOckovanie.Models
             modelBuilder.Entity<Vaccinated>().ToTable("Vaccinated");
 
             modelBuilder.Entity<Person>().HasKey(p => p.Id);
-            modelBuilder.Entity<Person>().Property(p => p.Id).IsRequired();
+            object p = modelBuilder.Entity<Person>().Property(p => p.Id).IsRequired();
             modelBuilder.Entity<Person>().Property(p => p.Surname).IsRequired().HasMaxLength(255);
             modelBuilder.Entity<Person>().Property(p => p.LastName).IsRequired().HasMaxLength(255);
             modelBuilder.Entity<Person>().Property(p => p.PhoneNumber).HasMaxLength(12);
@@ -54,6 +54,10 @@ namespace SystemOckovanie.Models
             modelBuilder.Entity<Hospital>().Property(p => p.Id).IsRequired();
             modelBuilder.Entity<Hospital>().Property(p => p.Name).IsRequired().HasMaxLength(255);
             modelBuilder.Entity<Hospital>().Property(p => p.PostCode).IsRequired();
+            modelBuilder.Entity<Hospital>().Property(p => p.Director).IsRequired().HasMaxLength(255);
+            modelBuilder.Entity<Hospital>().Property(p => p.Contact).IsRequired().HasMaxLength(255);
+            modelBuilder.Entity<Hospital>().Property(p => p.DailyVaccinatedCapacity).IsRequired();
+            modelBuilder.Entity<Hospital>().Property(p => p.BreathSupportCapacity).IsRequired();
 
             modelBuilder.Entity<Account>().HasKey(p => p.Id);
             modelBuilder.Entity<Account>().Property(p => p.Id).IsRequired();
