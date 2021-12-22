@@ -49,6 +49,7 @@ namespace SystemOckovanie.Models
             modelBuilder.Entity<Paramedic>().Property(p => p.Id).IsRequired();
             modelBuilder.Entity<Paramedic>().Property(p => p.HospitalId).IsRequired();
             modelBuilder.Entity<Paramedic>().Property(p => p.Role).IsRequired();
+            modelBuilder.Entity<Paramedic>().Property(p => p.YearsInPractise).IsRequired();
 
             modelBuilder.Entity<Hospital>().HasKey(p => p.Id);
             modelBuilder.Entity<Hospital>().Property(p => p.Id).IsRequired();
@@ -63,6 +64,7 @@ namespace SystemOckovanie.Models
             modelBuilder.Entity<Account>().Property(p => p.Id).IsRequired();
             modelBuilder.Entity<Account>().Property(p => p.Mail).IsRequired().HasMaxLength(255);
             modelBuilder.Entity<Account>().Property(p => p.Password).IsRequired().HasMaxLength(255);
+            modelBuilder.Entity<Account>().Property(p => p.Admin).IsRequired();
 
             modelBuilder.Entity<Vaccinated>().HasKey(p => p.Id);
             modelBuilder.Entity<Vaccinated>().Property(p => p.Id).IsRequired();
