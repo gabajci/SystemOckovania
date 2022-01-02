@@ -33,6 +33,12 @@ namespace FirmaApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Hospital>> GetHospital(int id)
         {
+            var hospitalExist = _context.Hospital.FirstOrDefault(parX => parX.Id == id);
+            if (hospitalExist == null)
+            {
+                return null;
+            }
+
             var hospital = await _context.Hospital.FindAsync(id);
 
             if (hospital == null)

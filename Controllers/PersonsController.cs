@@ -33,6 +33,12 @@ namespace FirmaApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Person>> GetPerson(int id)
         {
+            var personExist = _context.Person.FirstOrDefault(parX => parX.Id == id);
+            if (personExist == null)
+            {
+                return null;
+            }
+
             var Person = await _context.Person.FindAsync(id);
 
             if (Person == null)

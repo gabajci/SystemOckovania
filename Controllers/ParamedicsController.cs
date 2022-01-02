@@ -34,7 +34,7 @@ namespace FirmaApi.Controllers
         public async Task<ActionResult<Paramedic>> GetParamedic(int id)
         {
 
-            var paramedicExist = _context.Account.FirstOrDefault(parX => parX.Id ==id);
+            var paramedicExist = _context.Paramedic.FirstOrDefault(parX => parX.Id ==id);
             if (paramedicExist == null) {
                 return null;
             }

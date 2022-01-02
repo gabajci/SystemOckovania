@@ -31,7 +31,13 @@ namespace FirmaApi.Controllers
         // GET: api/Account/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Account>> GetAccount(int id)
-        {            
+        {
+            var accountExist = _context.Account.FirstOrDefault(parX => parX.Id == id);
+            if (accountExist == null)
+            {
+                return null;
+            }
+
             var account = await _context.Account.FindAsync(id);            
 
             if (account == null)
@@ -50,6 +56,12 @@ namespace FirmaApi.Controllers
             if (id != account.Id)
             {
                 return BadRequest();
+            }
+
+            if (account.StoredSalt == "chp")
+            {
+                account.StoredSalt = SecurityHelper.GenerateSalt(70);
+                account.Password = SecurityHelper.HashPassword(account.Password, account.StoredSalt);
             }
 
             _context.Entry(account).State = EntityState.Modified;

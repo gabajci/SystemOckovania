@@ -8,7 +8,7 @@ namespace SystemOckovania.Models
     {
         public int Id { get; set; }
         public int HospitalId { get; set; }
-        public int Role { get; set; }
+        public string Role { get; set; }
         public int YearsInPractise { get; set; }
     }
 }
