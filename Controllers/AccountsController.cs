@@ -91,6 +91,13 @@ namespace FirmaApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Account>> PostAccount(Account account)
         {
+
+            if (account.Mail == null || account.Mail == "" || account.Password == null ||
+                account.Password == "") 
+            {
+                return null;
+            }
+
             if (account.Id == -1)
             {
                 var accountCompare = _context.Account.FirstOrDefault(accountX => accountX.Mail == account.Mail);

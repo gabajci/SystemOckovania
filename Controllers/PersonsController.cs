@@ -85,6 +85,12 @@ namespace FirmaApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Person>> PostPerson(Person Person)
         {
+            if (Person.Surname == null || Person.Surname == "" || Person.LastName == null ||
+                Person.LastName == "")
+            {
+                return null;
+            }
+
             _context.Person.Add(Person);
             await _context.SaveChangesAsync();
 

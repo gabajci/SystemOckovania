@@ -85,6 +85,13 @@ namespace FirmaApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Hospital>> PostHospital(Hospital hospital)
         {
+
+            if (hospital.Name == null || hospital.Name == "" || hospital.Director == null ||
+                hospital.Director == "" || hospital.Contact==null || hospital.Contact == "")
+            {
+                return null;
+            }
+
             _context.Hospital.Add(hospital);
             await _context.SaveChangesAsync();
 

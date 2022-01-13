@@ -79,6 +79,11 @@ namespace FirmaApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Vaccinated>> PostVaccinated(Vaccinated Vaccinated)
         {
+            if (Vaccinated.VaccineName == null || Vaccinated.VaccineName == "")
+            {
+                return null;
+            }
+
             _context.Vaccinated.Add(Vaccinated);
             await _context.SaveChangesAsync();
 
